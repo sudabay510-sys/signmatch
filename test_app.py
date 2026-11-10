@@ -81,7 +81,17 @@ def test_quiz_flow_and_founding(client):
 
     r = client.get("/paywall")
     assert r.status_code == 200
-    assert b"Checkout coming soon" in r.data or b"founding" in r.data.lower()
+    html = r.data.decode()
+    assert "Checkout coming soon" not in html
+    assert "founding list" not in html.lower()
+    brand = BRANDS["signmatch"]
+    monthly, quarterly = brand["pricing"][0], brand["pricing"][1]
+    assert monthly["price"] in html and quarterly["price"] in html
+    assert "Monthly" in html and "Quarterly" in html
+    assert "Renews automatically. Cancel anytime from your Gumroad library." in html
+    href = brand["checkout_url"]
+    assert f'href="{href}?wanted=true"' in html
+    assert monthly["id"] == "monthly" and quarterly["id"] == "quarterly"
 
     r = client.get("/founding")
     html = r.data.decode()
@@ -94,6 +104,17 @@ def test_quiz_flow_and_founding(client):
     assert r.status_code in (302, 303)
     r = client.get("/founding/thanks")
     assert r.status_code == 200
+    thanks = r.data.decode()
+    assert f'href="{href}?wanted=true&email=founder%40example.com"' in thanks or f'href="{href}?wanted=true&amp;email=founder%40example.com"' in thanks
+    terms = client.get("/terms").data.decode()
+    assert "Payments are processed by Gumroad" in terms
+    assert "30-day money-back guarantee" not in terms.lower() or "does not offer a separate 30-day" in terms
+    landing = client.get("/").data.decode()
+    assert "Checkout coming soon" not in landing
+    assert "Checkout is not live yet" not in landing
+    assert "founding list" not in landing.lower()
+    assert "first 4 weeks" not in landing
+    assert "first 12 weeks" not in landing
 
 
 def test_csrf_rejects_bad_token(client):
@@ -111,7 +132,7 @@ def test_admin_requires_password(client):
     token = html.split(marker, 1)[1].split('"', 1)[0]
     r = client.post("/admin", data={"form_token": token, "password": "test-admin-password"}, follow_redirects=True)
     assert r.status_code == 200
-    assert b"Founding leads" in r.data
+    assert b"Leads" in r.data
 
 
 def test_legal_pages(client):

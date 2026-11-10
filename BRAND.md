@@ -3,7 +3,7 @@
 **Slug:** `signmatch`  
 **Tagline:** Make your business name, address, and phone match everywhere customers look.  
 **Local port:** `5102`  
-**Status:** Local prototype only — no deploy, no real payments.
+**Status:** Live. Payments processed by Gumroad (Monthly or Quarterly).
 
 ## Audience persona
 Local business owners who noticed wrong hours, phones, or duplicate listings — especially after a move or rebrand.
@@ -33,11 +33,11 @@ Prefer flat geometric icons, soft corners matching `--radius`, no stock-photo pe
 ## Sample copy lines
 - Hero CTA: “Build my visibility plan”
 - Honesty: “No ranking, call, or revenue guarantees. We never auto-edit your listings.”
-- Paywall: “Checkout coming soon: join founding list”
+- Paywall: “Start my plan” links to the Gumroad checkout URL.
 
 ## Do
-- Show intro **and** renewal prices.
-- Label founding list as no charge today.
+- Show Monthly and Quarterly prices, plus the renewal sentence, before checkout.
+- Save the customer’s email before sending them to Gumroad.
 - Keep disclaimers visible near plans.
 - Mobile-first quiz (one question per screen).
 
