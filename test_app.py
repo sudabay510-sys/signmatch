@@ -21,6 +21,8 @@ from quiz_engine import create_app  # noqa: E402
 @pytest.fixture()
 def client(tmp_path, monkeypatch):
     db = tmp_path / "app.db"
+    monkeypatch.delenv("DATABASE_URL", raising=False)
+    monkeypatch.delenv("DATABASE_SCHEMA", raising=False)
     monkeypatch.setenv("SIGNMATCH_DB", str(db))
     brand = dict(BRANDS["signmatch"])
     brand["root"] = str(ROOT)

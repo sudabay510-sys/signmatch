@@ -25,4 +25,4 @@ pip install -r requirements.txt
 PORT=10000 gunicorn -b 0.0.0.0:$PORT app:app
 ```
 
-Set `SECRET_KEY` and `ADMIN_PASSWORD` in the environment. SQLite is local and ephemeral on free hosts (data is lost on restart). There is no payment processor; the paywall is a founding-list signup only.
+Set `SECRET_KEY` and `ADMIN_PASSWORD` in the environment. Set `DATABASE_URL` to the shared Neon pooled connection string and `DATABASE_SCHEMA` to this app's slug so leads and quiz answers survive restarts. When `DATABASE_URL` is unset, the app falls back to a local SQLite file. There is no payment processor; the paywall is a founding-list signup only.

@@ -4,11 +4,12 @@ from __future__ import annotations
 import json
 import os
 import secrets
-import sqlite3
 from datetime import datetime, timezone
 from functools import wraps
 from pathlib import Path
 from typing import Any, Callable
+
+from db import open_store
 
 from flask import (
     Flask,
@@ -27,29 +28,6 @@ def utc_now() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
 
 
-SCHEMA = """
-CREATE TABLE IF NOT EXISTS quiz_sessions(
-  id INTEGER PRIMARY KEY,
-  session_key TEXT UNIQUE NOT NULL,
-  answers_json TEXT NOT NULL DEFAULT '{}',
-  plan_json TEXT,
-  email TEXT,
-  created TEXT DEFAULT CURRENT_TIMESTAMP,
-  updated TEXT DEFAULT CURRENT_TIMESTAMP
-);
-CREATE TABLE IF NOT EXISTS leads(
-  id INTEGER PRIMARY KEY,
-  email TEXT NOT NULL,
-  name TEXT,
-  plan_tier TEXT,
-  answers_json TEXT,
-  plan_json TEXT,
-  source TEXT DEFAULT 'founding',
-  created TEXT DEFAULT CURRENT_TIMESTAMP
-);
-"""
-
-
 def create_app(brand: dict[str, Any]) -> Flask:
     """brand keys: name, slug, tagline, port, secret_env, admin_env, db_env,
     questions (list), generate_plan(answers)->dict, pricing, colors, fonts,
@@ -66,18 +44,12 @@ def create_app(brand: dict[str, Any]) -> Flask:
         or f"dev-{brand['slug']}-change-me"
     )
     app.config["BRAND"] = brand
-    db_path = (
-        os.environ.get("DATABASE_PATH")
-        or os.environ.get(brand["db_env"])
-        or str(Path(brand["root"]) / f"{brand['slug']}.db")
-    )
-    Path(db_path).parent.mkdir(parents=True, exist_ok=True)
+    store = open_store(slug=brand["slug"], root=brand["root"], db_env=brand.get("db_env"))
+    store.init()
 
     def get_db():
         if "db" not in g:
-            g.db = sqlite3.connect(db_path)
-            g.db.row_factory = sqlite3.Row
-            g.db.executescript(SCHEMA)
+            g.db = store.connect()
         return g.db
 
     @app.teardown_appcontext
@@ -87,14 +59,10 @@ def create_app(brand: dict[str, Any]) -> Flask:
             db.close()
 
     def q(sql, args=(), one=False):
-        cur = get_db().execute(sql, args)
-        rows = cur.fetchall()
-        return (rows[0] if rows else None) if one else rows
+        return store.query(sql, args, one=one, conn=get_db())
 
     def x(sql, args=()):
-        cur = get_db().execute(sql, args)
-        get_db().commit()
-        return cur.lastrowid
+        return store.execute(sql, args, conn=get_db())
 
     def ensure_form_token():
         if "form_token" not in session:
@@ -334,10 +302,19 @@ def create_app(brand: dict[str, Any]) -> Flask:
 
     @app.get("/health")
     def health():
-        return {"ok": True, "brand": brand["name"]}
+        payload = {"ok": True, "brand": brand["name"], "db": store.backend}
+        if store.backend == "postgres":
+            payload["schema"] = store.schema
+        try:
+            store.ping()
+            payload["db_ok"] = True
+        except Exception:
+            payload["db_ok"] = False
+        return payload
 
     # expose helpers for tests
     app.db_q = q
     app.db_x = x
-    app.db_path = db_path
+    app.db_store = store
+    app.db_path = store.sqlite_path
     return app

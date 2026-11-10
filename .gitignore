@@ -8,3 +8,7 @@ venv/
 *.egg-info/
 .DS_Store
 shots/
+
+# never commit database secrets
+NEON-DATABASE-URL.txt
+.env
