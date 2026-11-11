@@ -1,0 +1,36 @@
+/* SignMatch identity layer, Nov 2026 refresh: Survey-grade audit ledger. Loaded after brand.css; visual only. */
+:root{--bg:#F3F6F4;--bg-alt:#E7EDEA;--card:#FFFFFF;--ink:#0B1B2B;--muted:#44566A;--line:#C9D4DA;--accent:#00754A;--accent-2:#005C3A;--on-accent:#FFFFFF;--hi:#7FD8B0;--radius:6px;--focus:#0057B8;
+--font-display:'Inter Tight', system-ui, sans-serif;--font-body:'Inter Tight', system-ui, sans-serif;--tracking:-0.025em;--cta-band-bg:#0B1B2B;--cta-band-ink:#F3F6F4;--cta-band-btn:#7FD8B0;--cta-band-btn-ink:#0B1B2B;
+--shadow-card:0 14px 34px rgba(0,0,0,.10);--shadow-btn:none}
+body{font-family:var(--font-body);background:var(--bg);color:var(--ink)}
+.skip:focus{background:var(--card);color:var(--ink);outline:3px solid var(--focus)}
+.btn:focus-visible,.choice:focus-within,a:focus-visible,.input:focus{outline:3px solid var(--focus);outline-offset:2px}
+.choice:has(input:checked){border-color:var(--accent);box-shadow:0 0 0 2px var(--accent) inset}
+.choice input{accent-color:var(--accent);width:1.15rem;height:1.15rem;flex:none}
+.choice{min-height:3.25rem}
+.btn{min-height:2.75rem}
+.nav a.btn-primary,.nav a.btn-primary:hover{color:var(--on-accent)}
+.safety{border-left-width:6px;border-left-style:solid}
+@media (max-width:560px){.choice{padding:.9rem 1rem}.quiz-q{font-size:1.45rem}}
+
+body{background:linear-gradient(rgba(11,27,43,.05) 1px,transparent 1px) 0 0/24px 24px,linear-gradient(90deg,rgba(11,27,43,.05) 1px,transparent 1px) 0 0/24px 24px,var(--bg)}
+.site-header{background:var(--card);border-bottom:2px solid var(--ink)}
+.hero{background:transparent}
+.eyebrow,.step-num,.tiny,.badge,.journey-step,.per{font-family:'JetBrains Mono',ui-monospace,monospace;letter-spacing:0}
+.eyebrow{color:var(--accent);text-transform:uppercase}
+.hero-card{border:1px solid var(--ink);border-radius:4px;box-shadow:none}
+.hero-card .card-label{font-family:'JetBrains Mono',monospace;border-bottom:1px solid var(--ink);padding-bottom:.5rem}
+.peek-list li{border-bottom:1px dashed var(--line)}
+.dot{border-radius:2px;background:var(--accent)}
+.choices{counter-reset:opt;gap:0;border:1px solid var(--ink);border-radius:4px;background:var(--card)}
+.choice{counter-increment:opt;border:0;border-bottom:1px solid var(--line);border-radius:0;align-items:center}
+.choice:last-child{border-bottom:0}
+.choice::before{content:counter(opt,decimal-leading-zero);font:600 .8rem 'JetBrains Mono',monospace;color:var(--muted);min-width:1.6rem}
+.choice:has(input:checked){background:#E6F4EE;box-shadow:inset 4px 0 0 var(--accent)}
+.progress{border-radius:0;height:.5rem}.progress-bar{background:var(--accent)}
+.plan-section{border-radius:4px;border-left:4px solid var(--accent)}
+.plan-section.locked{border-left-color:#8A4B00}
+.price-card,.feature,.pill-card,.steps li,.journey-card,.faq-item{border-radius:4px;box-shadow:none}
+.lock-banner{border:1px dashed var(--ink);background:var(--card);border-radius:4px}
+.steps li{border-left:4px solid var(--ink)}
+.safety{border-left-color:#8A4B00;background:#FFF6E8}
