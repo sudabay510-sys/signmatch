@@ -2,10 +2,9 @@
 {% block title %}{{ brand.name }} — {{ brand.tagline }}{% endblock %}
 {% block body_class %}page-landing{% endblock %}
 {% block content %}
-<section class="hero">
+<section class="hero ly-hero">
   <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <p class="eyebrow">{{ brand.eyebrow }}</p>
+    <div class="hero-copy"><p class="eyebrow">{{ brand.eyebrow }}</p>
       <h1>{{ brand.hero_title }}</h1>
       <p class="lede">{{ brand.hero_lede }}</p>
       <div class="hero-actions">
@@ -13,16 +12,28 @@
         <a class="btn btn-lg btn-ghost" href="#how">See how it works</a>
       </div>
       <p class="tiny muted">{{ brand.honesty_line }}</p>
+      {% if brand.get('safety_note') %}
+<aside class="safety" role="note" aria-label="Safety note"><strong>{{ brand.safety_title or "Important" }}:</strong> {{ brand.safety_note }}</aside>
+{% endif %}</div>
+    <div class="sm-sheet" aria-label="Sample plan peek">
+      <div class="sm-sheet-h"><span>AUDIT SHEET</span><span>SAMPLE PLAN PEEK</span></div>
+      <table class="sm-table"><thead><tr><th>#</th><th>Line item</th><th>Status</th></tr></thead><tbody>
+      {% for b in brand.sample_peek %}<tr><td>{{ "%02d"|format(loop.index) }}</td><td>{{ b }}</td><td><span class="sm-st">To check</span></td></tr>{% endfor %}
+      </tbody></table>
+      <p class="card-fade">Full plan unlocks after your quiz</p>
     </div>
-    <div class="hero-card" aria-hidden="true">
-      <div class="card-label">Sample plan peek</div>
-      <ul class="peek-list">
-        {% for b in brand.sample_peek %}
-        <li><span class="dot"></span>{{ b }}</li>
-        {% endfor %}
-      </ul>
-      <div class="card-fade">Full plan unlocks after your quiz</div>
-    </div>
+  </div>
+</section>
+<section class="section sm-diff-s" aria-labelledby="smd-h">
+  <div class="wrap">
+    <p class="eyebrow">Example mismatch</p>
+    <h2 id="smd-h">What a mismatch looks like, side by side</h2>
+    <div class="sm-scroll"><table class="sm-table sm-diff"><thead><tr><th>Field</th><th>Your source of truth</th><th>Listing A</th><th>Listing B</th></tr></thead><tbody>
+      <tr><td>Name</td><td>Rio Barbers</td><td><span class="ok">✓ match</span> Rio Barbers</td><td><span class="bad">≠ mismatch</span> Rio's Barber Shop</td></tr>
+      <tr><td>Address</td><td>214 Main St</td><td><span class="bad">≠ mismatch</span> 18 Oak Ave (old)</td><td><span class="ok">✓ match</span> 214 Main St</td></tr>
+      <tr><td>Phone</td><td>(555) 010-2299</td><td><span class="ok">✓ match</span> (555) 010-2299</td><td><span class="bad">≠ mismatch</span> (555) 010-7731</td></tr>
+    </tbody></table></div>
+    <p class="tiny muted">Illustration with made-up details. Your plan gives a fix order; it does not check listings for you or promise rankings.</p>
   </div>
 </section>
 
