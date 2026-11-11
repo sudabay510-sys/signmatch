@@ -1,0 +1,19 @@
+/* signmatch layout compositions (phase 2). Loaded after identity.css. */
+.sm-sheet,.sm-report{background:var(--card);border:1px solid var(--ink);border-radius:4px;overflow:hidden}
+.sm-sheet-h{display:flex;justify-content:space-between;gap:1rem;background:var(--ink);color:#F3F6F4;font:600 .72rem 'JetBrains Mono',monospace;letter-spacing:.08em;padding:.55rem .9rem}
+.sm-table{width:100%;border-collapse:collapse;font-size:.92rem}
+.sm-table th{font:600 .7rem 'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;border-bottom:1px solid var(--ink);padding:.55rem .8rem;background:#F7FAF8}
+.sm-table td{border-bottom:1px solid var(--line);padding:.6rem .8rem;vertical-align:top}
+.sm-table td:first-child{font-family:'JetBrains Mono',monospace;color:var(--muted);width:2.5rem}
+.sm-sheet .card-fade{padding:0 .9rem .9rem}
+.sm-st{font:600 .7rem 'JetBrains Mono',monospace;border:1px solid #8A4B00;color:#8A4B00;padding:.1rem .4rem;border-radius:3px;white-space:nowrap}
+.sm-scroll{overflow-x:auto;border:1px solid var(--ink);border-radius:4px;background:var(--card);margin-bottom:.75rem}
+.sm-diff td:first-child{font-weight:700;font-family:inherit;color:var(--ink);width:auto}
+.sm-diff .ok{display:inline-block;font:600 .72rem 'JetBrains Mono',monospace;color:#00754A;background:#E6F4EE;padding:.05rem .35rem;border-radius:3px;margin-right:.3rem}
+.sm-diff .bad{display:inline-block;font:600 .72rem 'JetBrains Mono',monospace;color:#B3261E;background:#FDECEA;padding:.05rem .35rem;border-radius:3px;margin-right:.3rem}
+.sm-qh{display:flex;justify-content:space-between;font:600 .75rem 'JetBrains Mono',monospace;letter-spacing:.08em;border-bottom:1px solid var(--ink);padding-bottom:.4rem;margin-bottom:.6rem}
+.page-quiz .tiny.muted{display:none}
+.sm-report{margin-bottom:1.5rem}.sm-report-b{padding:1.5rem}
+.sm-row{display:grid;grid-template-columns:5.5rem 1fr;gap:1rem;align-items:start}
+.sm-idx{font:700 .78rem 'JetBrains Mono',monospace;color:var(--accent);padding-top:.2rem}
+@media (max-width:560px){.sm-row{grid-template-columns:1fr;gap:.25rem}.sm-sheet-h{flex-direction:column;gap:.15rem}}
