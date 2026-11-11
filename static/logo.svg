@@ -1,1 +1,2 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none"><rect width="64" height="64" rx="12" fill="#0E7C86"/><path d="M18 38V26h4.2l6.3 8.2V26H33v12h-4.2L22.5 29.7V38H18zM36.5 38l4.2-12h5.2l4.2 12h-4.5l-.7-2.2h-3.3L41 38h-4.5zm6.6-5.3l-1.1-3.7-1.1 3.7h2.2z" fill="#F2FFFE"/></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="SignMatch icon"><rect width="100" height="100" rx="18" fill="#0B1B2B"/><path d="M20 32h26M20 50h26M20 68h26" stroke="#7FD8B0" stroke-width="7"/><path d="M54 32h26M54 50h26" stroke="#fff" stroke-width="7"/><path d="M54 68l8 8 18-20" fill="none" stroke="#00B377" stroke-width="7"/></svg>

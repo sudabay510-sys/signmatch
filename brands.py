@@ -569,7 +569,7 @@ BRANDS = {
         "checkout_url": "https://solvfix.gumroad.com/l/udyxf",
         "disclaimer_short": "Educational listing checklists only. No auto-edits. No ranking or lead guarantees.",
         "disclaimer_long": "SignMatch provides educational guidance for business listing consistency. It does not modify third-party listings, guarantee search rankings, call volume, or revenue, and is not affiliated with Google, Yelp, or Apple. Payments are processed by Gumroad, not on this site.",
-        "font_url": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=Space+Grotesk:wght@600;700&display=swap",
+        "font_url": "https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap",
         "questions": SM_Q,
         "generate_plan": sm_plan,
         "secret_env": "SIGNMATCH_SECRET",

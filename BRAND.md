@@ -65,3 +65,25 @@ Prefer flat geometric icons, soft corners matching `--radius`, no stock-photo pe
 
 ## Logo file
 `static/logo.svg`
+
+
+## Identity refresh (Nov 2026)
+
+Visual layer only (`static/identity.css`, `static/logo.svg`, Google Fonts URL). Quiz questions, plan generation, routes, pricing, checkout/unlock, and safety notes are unchanged.
+
+- **Concept:** Survey-grade audit ledger. Precise, calm, and checkable: a grid-paper audit sheet, a red/green diff of listing details, and a numbered fix order.
+- **Type:** Inter Tight (display) / Inter Tight + JetBrains Mono (data) (body)
+- **Voice:** A careful surveyor: states what’s different, in what order to fix it, and what we can’t promise.
+- **Persona (design assumption, not research):** Luis, barbershop owner after a move (assumption): Moved his shop two blocks last year. Customers still call the old number from Yelp.
+
+| Color | Hex |
+|---|---|
+| Survey paper | `#F3F6F4` |
+| Ledger ink | `#0B1B2B` |
+| Signal green | `#00754A` |
+| Mismatch red | `#B3261E` |
+| Amber note | `#8A4B00` |
+| Slate | `#44566A` |
+| Mint | `#7FD8B0` |
+
+Full brand guide, persona, and journey: `quiz-to-plan-redesign/products/signmatch/brand.html`.
